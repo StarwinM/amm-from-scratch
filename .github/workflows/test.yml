@@ -7,9 +7,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-env:
-  FOUNDRY_PROFILE: default
-
 jobs:
   build-and-test:
     name: Build & Test
@@ -24,9 +21,6 @@ jobs:
 
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
-
-      - name: Show Forge version
-        run: forge --version
 
       - name: Compile contracts
         run: forge build --sizes
@@ -62,3 +56,4 @@ jobs:
         uses: crytic/slither-action@v0.4.0
         with:
           fail-on: none
+          ignore-compile: true
